@@ -1,0 +1,13 @@
+{
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "__split_buffer": "c",
+        "__string": "c",
+        "istream": "c",
+        "locale": "c",
+        "sstream": "c",
+        "string": "c",
+        "vector": "c",
+        "iterator": "c"
+    }
+}

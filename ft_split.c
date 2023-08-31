@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/17 18:40:10 by ohladkov          #+#    #+#             */
+/*   Updated: 2023/08/28 00:03:13 by ohladkov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void    free_arr(int **ptr)
+void    free_arr(char **ptr)
 {
 	int	i;
 	int	j;
@@ -15,8 +27,8 @@ void    free_arr(int **ptr)
 		ptr[j] = NULL;
 		j++;
 	}
-    free(ptr);
-    ptr = NULL;
+	free(ptr);
+	ptr = NULL;
 }
 
 int	ft_countw(char *str, char c)
@@ -72,9 +84,11 @@ char	**ft_split(char *str, char c)
 	if (str == NULL)
 		return (NULL);
 	wrds = ft_countw(str, c);
+	if (!wrds)
+		exit (1);
 	i = 0;
 	arr = (char **)malloc(sizeof(char *) * (wrds + 1));
-	if (!arr)
+	if (arr == NULL)
 		return (NULL);
 	while (i < wrds)
 	{
