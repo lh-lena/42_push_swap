@@ -16,17 +16,19 @@ bool	is_sorted(t_list **stack)
 {
 	t_list	*cur;
 	int		temp;
+	size_t	size;
 
 	if (!stack)
 		return (1);
 	cur = (*stack);
-	cur->size = ft_lstsize(*stack);
-	while (--cur->size)
+	size = ft_lstsize(*stack);
+	while (size)
 	{
 		temp = cur->val;
 		cur = cur->next;
 		if (temp > cur->val)
 			return (false);
+		size--;
 	}
 	return (true);
 }

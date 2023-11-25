@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:26 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 15:44:24 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:32:41 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,10 @@ int	main(int argc, char **argv)
 	return (0);
 }
 // TODO:
-// min | max
-// is reverced sort?
+// write(1, "sa\n", 1); and so on
+/*
+ARG="4 67 3 87 23"; ./push_swap $ARG
+ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_Mac $ARG
+
+*/

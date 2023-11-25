@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:14:23 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/22 17:33:24 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:32:01 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	pa(t_list **stack_a, t_list **stack_b)
 	{
 		delete_first_node(stack_b);
 		ft_add_front(stack_a, push);
-		// ft_putendl("pa");
+		write(1, "pa\n", 3);
 	}
 }
 
@@ -38,6 +38,6 @@ void	pb(t_list **stack_a, t_list **stack_b)
 	{
 		delete_first_node(stack_a);
 		ft_add_front(stack_b, push);
-		// ft_putendl("pb");
+		write(1, "pb\n", 3);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:38:41 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 17:48:33 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:47:45 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ size_t	ft_lstsize(t_list *lst)
 		lst = lst->next;
 		i++;
 	}
-	printf("i = %zu", i);
 	return (i);
 }
 
@@ -62,7 +61,7 @@ void	print_lst(t_list *lst)
 	size = ft_lstsize(lst);
 	while (i < size)
 	{
-		printf("node = %d   idx = %d|\n", temp->val, temp->idx);
+		printf(" node = %d |\n", temp->val);
 		temp = temp->next;
 		i++;
 	}
@@ -109,6 +108,7 @@ t_list *get_min(t_list **stack)
 			min = cur->prev;
 		size--;
 	}
+	// printf("MIN = %d\n", min->val);
 	return (min);
 }
 
@@ -117,20 +117,22 @@ void	set_idx(t_list **stack)
 	int		i;
 	int		median;
 	size_t	size;
+	t_list	*cur;
 
 	if (!stack)	
 		return ;
+	cur = *stack;
 	i = 0;
 	size = ft_lstsize(*stack);
-	median = stack->size / 2;
+	median = size / 2;
 	while (size)
 	{
-		stack->idx = i;
+		cur->idx = i;
 		if (i <= median)
-			stack->above_median = true;
+			cur->above_median = true;
 		else
-			stack->above_median = false;
-		stack = stack->next;
+			cur->above_median = false;
+		cur = cur->next;
 		// ++i;
 		i++;
 		size--;

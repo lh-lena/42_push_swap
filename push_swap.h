@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 12:11:36 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 17:49:17 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:52:25 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ typedef struct	s_details
 {
 	int		upward;
 	int		downward;
-	t_list	*min;
-	t_list	*max;
+	struct s_list	*min;
+	struct s_list	*max;
 }				t_details;
 
 typedef struct s_list
@@ -48,9 +48,9 @@ typedef struct s_list
 	int		push_cost;
 	bool	above_median;
 	bool	cheapest;
-	t_list	*target_node;
-	t_list	*prev;
-	t_list	*next;
+	struct s_list	*target_node;
+	struct s_list	*prev;
+	struct s_list	*next;
 }				t_list;
 
 char	**ft_split(char *str, char c);
