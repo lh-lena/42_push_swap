@@ -6,42 +6,27 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:39:39 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/08/21 15:14:27 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:17:50 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-void	free_stack(t_list *stack, void	*last)
+t_list	*ft_lstnew(int val)
 {
-	// if ((void*)stack == NULL || !stack)
-	// {
-	// 	printf("Stack empty\n");
-    //     return ;
-	// }
-	if (stack)
-	{
-		if (stack != last)
-			free_stack(stack->next, last);
-		free(stack);
-	}
-}
+	t_list	*new;
 
-t_list	*ft_lstnew(int content)
-{
-    t_list  *new;
-
-    new = (t_list *)malloc(sizeof(t_list));
-    if (!new)
-    	return (NULL);
-    new->content = content;
-    new->next = NULL;
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->val = val;
+	new->next = NULL;
 	new->prev = NULL;
-    return (new);
+	return (new);
 }
 
 // to insert a new node at the end
-void	ft_add_back(t_list **head, t_list *newNode)
+void	ft_add_back(t_list **head, t_list *new_node)
 {
 	t_list	*last;
 
@@ -49,43 +34,43 @@ void	ft_add_back(t_list **head, t_list *newNode)
 	{
 		if (*head == NULL)
 		{
-			(*head) = newNode;
-			(*head)->next = newNode;
-			(*head)->prev = newNode;
+			(*head) = new_node;
+			(*head)->next = new_node;
+			(*head)->prev = new_node;
 			return ;
 		}
 		last = (*head);
 		while (last->next != *head)
 			last = last->next;
-		if (newNode)
+		if (new_node)
 		{
-			last->next = newNode;
-			newNode->prev = last;
-			(*head)->prev = newNode;
-			newNode->next = (*head);
+			last->next = new_node;
+			new_node->prev = last;
+			(*head)->prev = new_node;
+			new_node->next = (*head);
 		}
 	}
 }
 
 // add-front
-void	ft_add_front(t_list **head, t_list *newNode)
+void	ft_add_front(t_list **head, t_list *new_node)
 {
 	if (!*head)
 	{
-		(*head) = newNode;
-		newNode->next = newNode;
-		newNode->prev = newNode;
+		(*head) = new_node;
+		new_node->next = new_node;
+		new_node->prev = new_node;
 		return ;
 	}
-	newNode->prev = (*head)->prev;
-	newNode->next = (*head);
-	(*head)->prev->next = newNode;
-	(*head)->prev = newNode;
-	(*head) = newNode;
+	new_node->prev = (*head)->prev;
+	new_node->next = (*head);
+	(*head)->prev->next = new_node;
+	(*head)->prev = new_node;
+	(*head) = new_node;
 }
 
 //removing the first node
-void	deleteFirstNode(t_list **head)
+void	delete_first_node(t_list **head)
 {
 	if ((*head)->next == *head && (*head)->prev == *head)
 		(*head) = NULL;
@@ -97,49 +82,6 @@ void	deleteFirstNode(t_list **head)
 	}
 }
 
-t_list	*ft_lstlast(t_list *head)
-{
-	// printf("head->prev = %i\n", head->prev);
-	return (head->prev);
-}
-
-int	ft_lstsize(t_list *lst)
-{
-	t_list	*temp;
-	void	*lastNode;
-	int		i;
-
-	if (!lst)
-		return (0);
-	lastNode = lst;
-	i = 1;
-	while (lst->next != lastNode)
-	{
-		lst = lst->next;
-		i++;
-	}
-	return (i);
-}
-
-void	print_lst(t_list *lst)
-{
-	t_list	*temp;
-	size_t	size;
-	int		i;
-	
-	i = 0;
-	temp = lst;
-	size = ft_lstsize(lst);
-	while (i < size)
-	{
-		printf("node = %d | ", temp->content);
-		temp = temp->next;
-		i++;
-	}
-	if (lst == NULL)
-    	printf("lst = NULL\n");
-}
-
 // int    fill_stack(char *s)
 // {
 //     t_list  *stack_a;
@@ -147,9 +89,9 @@ void	print_lst(t_list *lst)
 
 // 	stack_a = NULL;
 // 	elem = atoi(s);
-// 	// printf("check_digit(s) = %i\n", check_digit(s));
+// 	// printf("is_valid(s) = %i\n", is_valid(s));
 // 	// printf("check_dobl(&stack_a) = %i\n", check_dobl(&stack_a));
-// 	if (check_digit(s) == 1)
+// 	if (is_valid(s) == 1)
 // 		push_back(&stack_a, elem);
 // 	else
 // 	{

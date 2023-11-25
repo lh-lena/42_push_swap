@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_sorted.c                                     :+:      :+:    :+:   */
+/*   is_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 20:00:35 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/08/21 10:48:18 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/17 17:32:54 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-bool	check_sorted(t_list **stack_a)
+bool	is_sorted(t_list **stack_a)
 {
-	int	size;
+	int		size;
 	t_list	*cur;
 	int		temp;
 
@@ -22,10 +22,9 @@ bool	check_sorted(t_list **stack_a)
 	cur = (*stack_a);
 	while (--size)
 	{
-		
-		temp = cur->content;
+		temp = cur->val;
 		cur = cur->next;
-		if (temp > cur->content)
+		if (temp > cur->val)
 			return (false);
 	}
 	return (true);

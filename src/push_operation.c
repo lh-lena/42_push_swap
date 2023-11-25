@@ -6,22 +6,23 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:14:23 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/08/21 12:40:53 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:33:24 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
 // Take the first element at the top of b and put it at the top of a.
 // Do nothing if b is empty.
 void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*toPush;
+	t_list	*push;
 	
-	toPush = *stack_b;
+	push = *stack_b;
 	if (*stack_b)
 	{
-		deleteFirstNode(stack_b);
-		ft_add_front(stack_a, toPush);
+		delete_first_node(stack_b);
+		ft_add_front(stack_a, push);
 		// ft_putendl("pa");
 	}
 }
@@ -30,13 +31,13 @@ void	pa(t_list **stack_a, t_list **stack_b)
 // Do nothing if a is empty.
 void	pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*toPush;
+	t_list	*push;
 
-	toPush = *stack_a;
+	push = *stack_a;
 	if (*stack_a)
 	{
-		deleteFirstNode(stack_a);
-		ft_add_front(stack_b, toPush);
+		delete_first_node(stack_a);
+		ft_add_front(stack_b, push);
 		// ft_putendl("pb");
 	}
 }
