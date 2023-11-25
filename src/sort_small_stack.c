@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 21:48:44 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/24 14:17:50 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:46:08 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,26 @@ void	sort_small_stack(t_list **a, t_list **b)
 	size_t	size;
 
 	size = ft_lstsize(*a);
-	// printf("stack_size = %zu\n", stack_size);
-	get_max(a);
-	get_min(a);
 	if (size == 2)
 	{
-		if (!is_sorted(a))
-		{
-			sa(a);
-			write(1, "sa\n", 3);
-		}
-		exit(0);
+		sa(a);
+		write(1, "sa\n", 3);
 	}
-	else if (size <= 5)
+	else if (size == 3)
 	{
-		if (size == 3)
-			sort_3_stack(a);
+		sort_3_stack(a);
+	}
+	else if (size == 5)
+	{
 		sort_5_stack(a, b);
 	}
 }
 
 void	sort_3_stack(t_list **stack_a)
 {
-	int	first;
-	int	second;
-	int third;
+	long	first;
+	long	second;
+	long	third;
 
 	first = (*stack_a)->val;
 	second = ((*stack_a)->next)->val;
@@ -65,11 +60,27 @@ void	sort_3_stack(t_list **stack_a)
 	}
 }
 
-void	sort_5_stack(t_list **stack_a, t_list **stack_b)
+void	sort_5_stack(t_list **a, t_list **b)
 {
-	(void)stack_b;
-	get_min(stack_a);
-	sort_3_stack(stack_a);
-	// while (ft_lstsize(*stack_b) > 0)
-	// 	// *put in correct pos*
+	t_details	data;
+
+	while (ft_lstsize(a) > 3)
+	{
+		data.min = get_min(a);
+		while(a != data.min)
+		{
+			if (a->above_median)
+				ra(a);
+			else
+				rra(a);
+		}
+		pb(a, b);
+	}
+	write(1, "a\n", 2);
+	print_lst(*a);
+	write(1, "b\n", 2);
+	print_lst(*b);
+	sort_3_stack(a);
+	write(1, "a2\n", 3);
+	print_lst(*a);
 }

@@ -8,6 +8,7 @@
         "sstream": "c",
         "string": "c",
         "vector": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "algorithm": "c"
     }
 }

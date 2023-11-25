@@ -12,15 +12,16 @@
 
 #include "../push_swap.h"
 
-bool	is_sorted(t_list **stack_a)
+bool	is_sorted(t_list **stack)
 {
-	int		size;
 	t_list	*cur;
 	int		temp;
 
-	size = ft_lstsize(*stack_a);
-	cur = (*stack_a);
-	while (--size)
+	if (!stack)
+		return (1);
+	cur = (*stack);
+	cur->size = ft_lstsize(*stack);
+	while (--cur->size)
 	{
 		temp = cur->val;
 		cur = cur->next;

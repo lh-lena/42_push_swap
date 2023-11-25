@@ -6,20 +6,35 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 17:09:29 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/24 14:17:50 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:57:36 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+t_list	*get_node_by_idx(t_list *stack, int idx)
+{
+	t_list	*cur;
+
+	cur = stack;
+	while (cur != stack)
+	{
+		if (cur->idx == idx)
+			return (cur);
+		cur = cur->next;
+	}
+	return (NULL);
+}
+
 static void	swap_idx(t_list **stack, int i, int j)
 {
 	t_list	*node_i;
 	t_list	*node_j;
-	
+
 	node_i = get_node_by_idx(*stack, i);
 	node_j = get_node_by_idx(*stack, j);
-	if (node_i != NULL && node_j != NULL) {
+	if (node_i != NULL && node_j != NULL)
+	{
 		int temp = node_i->idx;
 		node_i->idx = node_j->idx;
 		node_j->idx = temp;
@@ -57,19 +72,7 @@ int partition(t_list *stack, int *arr, int low, int high)
 	swap_idx(&stack, i + 1, high);
 	return (i + 1);
 }
-t_list	*get_node_by_idx(t_list *stack, int idx)
-{
-	t_list	*cur;
 
-	cur = stack;
-	while (cur != stack)
-	{
-		if (cur->idx == idx)
-			return (cur);
-		cur = cur->next;
-	}
-	return (NULL);
-}
 void	quicksort(t_list *stack, int *arr, int start, int end)
 {
 	int	pivot_idx;
@@ -91,6 +94,7 @@ int	stack_dup(t_list *stack)
 		return (0);
 	i = 0;
 	node = stack;
+	arr = NULL;
 	arr = malloc(sizeof(int) * ft_lstsize(stack));
 	if (!arr)
 		return (0);

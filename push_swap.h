@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 12:11:36 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/24 14:32:40 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:49:17 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,31 @@ typedef struct s_save
 	int k;
 }	t_save;
 
-typedef struct s_details {
-	int	min;
-	int	max;
-	int	c_upward;
-	int	c_downward;
-}	t_details;
+typedef struct s_node_details
+{
+	int	pos;
+	struct s_list	*node;
+}	t_node_details;
+
+typedef struct	s_details
+{
+	int		upward;
+	int		downward;
+	t_list	*min;
+	t_list	*max;
+}				t_details;
 
 typedef struct s_list
 {
-	int				val;
-	int				idx;
-	struct s_list	*prev;
-	struct s_list	*next;
-}	t_list;
+	int		val;
+	int		idx;
+	int		push_cost;
+	bool	above_median;
+	bool	cheapest;
+	t_list	*target_node;
+	t_list	*prev;
+	t_list	*next;
+}				t_list;
 
 char	**ft_split(char *str, char c);
 int		ft_countw(char *str, char c);
@@ -60,7 +71,6 @@ void	free_stack(t_list *stack, void *last);
 t_list	*fill_in_stack(int argc, char **argv);
 bool	check_duplicate(t_list **stack_a);
 t_list	*parse_argv(char **argv);
-
 int		is_cyclic(t_list **stack);
 int		is_rev_sorted(t_list **stack);
 
@@ -70,16 +80,17 @@ void	ft_add_front(t_list **head, t_list *new_node);
 void	delete_first_node(t_list **head);
 size_t	ft_lstsize(t_list *lst);
 void	print_lst(t_list *lst);
+void	set_idx(t_list **stack);
 
 bool	is_sorted(t_list **stack_a);
 void	sort_stack(t_list **stack_a, t_list **stack_b);
-void	sort_stack(t_list **stack_a, t_list **stack_b);
+void	rev_sort(t_list **a, t_list **b);
 void	sort_small_stack(t_list **a, t_list **b);
 void	sort_big_stack(t_list **a, t_list **b);
 void	sort_3_stack(t_list **stack_a);
 void	sort_5_stack(t_list **stack_a, t_list **stack_b);
-int		get_max(t_list **stack);
-int 	get_min(t_list **stack);
+t_list *get_max(t_list **stack);
+t_list *get_min(t_list **stack);
 void	positive_sort(t_list **a, t_list **b, t_save *save, int args);
 void	b_pos_sort(t_list **a, t_list **b, t_save *save);
 void	negative_sort(t_list **a, t_list **b, t_save *save, int args);

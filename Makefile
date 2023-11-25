@@ -19,7 +19,7 @@ OBJ				=	$(S_SRC:.c=.o)
 # Compiler
 CC				=	cc
 RM				=	rm -f
-CFLAGS			=	-Wall -Werror -Wextra
+CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address 
 
 all:		$(NAME)
 

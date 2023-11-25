@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:38:41 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/24 14:17:50 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:48:33 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	free_stack(t_list *stack, void	*last)
 {
-	// if ((void*)stack == NULL || !stack)
-	// {
-	// 	printf("Stack empty\n");
-	//     return ;
-	// }
+	if ((void*)stack == NULL || !stack)
+	{
+		printf("Stack empty\n");
+		return ;
+	}
 	if (stack)
 	{
 		if (stack != last)
@@ -47,6 +47,7 @@ size_t	ft_lstsize(t_list *lst)
 		lst = lst->next;
 		i++;
 	}
+	printf("i = %zu", i);
 	return (i);
 }
 
@@ -69,46 +70,69 @@ void	print_lst(t_list *lst)
 		printf("lst = NULL\n");
 }
 
-int	get_max(t_list **stack)
+t_list *get_max(t_list **stack)
 {
-	int 	max;
+	t_list *max;
 	int		size;
 	t_list	*cur;
-	int		temp;
+	long	temp;
 
 	size = ft_lstsize(*stack);
 	cur = (*stack);
-	max = cur->val;
+	max = cur;
 	while (size)
 	{
 		temp = cur->val;
 		cur = cur->next;
-		if (max < temp)
-			max = temp;
+		if (max->val < temp)
+			max = cur->prev;
 		size--;
 	}
-	printf("max = %d\n", max);
 	return (max);
 }
 
-int	get_min(t_list **stack)
+t_list *get_min(t_list **stack)
 {
-	int 	min;
+	t_list *min;
 	int		size;
 	t_list	*cur;
-	int		temp;
+	long	temp;
 
 	size = ft_lstsize(*stack);
 	cur = (*stack);
-	min = cur->val;
+	min = cur;
 	while (size)
 	{
 		temp = cur->val;
 		cur = cur->next;
-		if (min > temp)
-			min = temp;
+		if (min->val > temp)
+			min = cur->prev;
 		size--;
 	}
-	printf("min = %d\n", min);
 	return (min);
+}
+
+void	set_idx(t_list **stack)
+{
+	int		i;
+	int		median;
+	size_t	size;
+
+	if (!stack)	
+		return ;
+	i = 0;
+	size = ft_lstsize(*stack);
+	median = stack->size / 2;
+	while (size)
+	{
+		stack->idx = i;
+		if (i <= median)
+			stack->above_median = true;
+		else
+			stack->above_median = false;
+		stack = stack->next;
+		// ++i;
+		i++;
+		size--;
+	}
 }

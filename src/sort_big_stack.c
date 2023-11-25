@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:21:11 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/22 22:12:44 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/25 15:24:24 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	sort_big_stack(t_list **a, t_list **b)
 {
-	(void)a;
-	(void)b;
-	printf("\nbig sort\n");
+	if (is_rev_sorted(a))
+		rev_sort(a, b);
 	// t_save	save;
 	// size_t	size;
 
