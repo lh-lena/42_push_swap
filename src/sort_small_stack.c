@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 21:48:44 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 19:31:33 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 10:40:05 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	sort_3_stack(t_list **stack_a)
 	long	second;
 	long	third;
 
+	if (is_sorted(stack_a))
+		return ;
 	first = (*stack_a)->val;
 	second = ((*stack_a)->next)->val;
 	third = ((*stack_a)->prev)->val;
@@ -57,7 +59,7 @@ void	sort_3_stack(t_list **stack_a)
 	}
 }
 
-static bool	check(int a, int b)
+static bool	equal(int a, int b)
 {
 	if (a == b)
 		return (1);
@@ -73,19 +75,14 @@ void	sort_5_stack(t_list **a, t_list **b)
 	while (size-- > 3)
 	{
 		data.min = get_min(a);
-		while(!check((*a)->val, data.min->val))
+		while(!equal((*a)->val, data.min->val))
 		{
 			if (data.min->above_median)
-			{
 				ra(a);
-			}
 			else
-			{
 				rra(a);
-			}
 		}
 		pb(a, b);
-		write(1, "pb\n", 3);
 	}
 	sort_3_stack(a);
 	pa(a, b);

@@ -6,16 +6,17 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:21:11 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 15:24:24 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 10:44:55 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+/*
 void	sort_big_stack(t_list **a, t_list **b)
 {
-	if (is_rev_sorted(a))
-		rev_sort(a, b);
+	// if (is_rev_sorted(a))
+	// 	rev_sort(a, b);
 	// t_save	save;
 	// size_t	size;
 
@@ -30,4 +31,13 @@ void	sort_big_stack(t_list **a, t_list **b)
 	// save.k = 0;
 	// negative_sort(a, b, &save, size);
 	// write(1, "rb\n", 3);
+}
+*/
+
+void	sort_big_stack(t_list **a, t_list **b)
+{
+
+	if (is_rev_sorted(a))
+		rev_sort(a, b);
+	
 }

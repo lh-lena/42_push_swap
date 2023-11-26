@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:29:11 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 18:16:36 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 10:29:22 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ra(t_list **stack_a)
 	if (*stack_a)
 	{
 		(*stack_a) = (*stack_a)->next;
-		// write(1, "ra\n", 3);
+		write(1, "ra\n", 3);
 	}
 }
 
@@ -30,7 +30,7 @@ void	rb(t_list **stack_b)
 	if (*stack_b)
 	{
 		(*stack_b) = (*stack_b)->next;
-		// write(1, "rb\n", 3);
+		write(1, "rb\n", 3);
 	}
 }
 
@@ -43,7 +43,6 @@ void	rr(t_list **stack_a, t_list **stack_b)
 		{
 			*stack_b = (*stack_b)->next;
 			*stack_a = (*stack_a)->next;
-			// ft_putendl("rr");
 			write(1, "rr\n", 3);
 		}
 	}

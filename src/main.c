@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:26 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 19:32:41 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 10:33:26 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	}
 	if (!is_sorted(&stack_a))
 		sort_stack(&stack_a, &stack_b);
-	print_lst(stack_a); // delete it
+	// print_lst(stack_a); // delete it
 	if (stack_a)
 		free_stack(stack_a, stack_a->prev);
 	if (stack_b)
