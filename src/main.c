@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:26 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:33:26 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:17:35 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ t_list	*fill_in_stack(int argc, char **argv)
 	stack_a = NULL;
 	i = 1;
 	new_node = NULL;
-	// printf("argc = %i\n", argc);
 	if (argc == 2)
 		stack_a = parse_argv(argv);
 	else
@@ -77,7 +76,7 @@ int	main(int argc, char **argv)
 		return (1);
 	stack_a = fill_in_stack(argc, argv);
 	stack_b = NULL;
-	if (!stack_a || check_duplicate(&stack_a))
+	if (!stack_a || check_duplicate(stack_a))
 	{
 		if (stack_a)
 			free_stack(stack_a, stack_a->prev);
@@ -85,18 +84,16 @@ int	main(int argc, char **argv)
 	}
 	if (!is_sorted(&stack_a))
 		sort_stack(&stack_a, &stack_b);
-	// print_lst(stack_a); // delete it
+	// print_lst(stack_a);
 	if (stack_a)
 		free_stack(stack_a, stack_a->prev);
 	if (stack_b)
 		free_stack(stack_b, stack_b->prev);
 	return (0);
 }
-// TODO:
-// write(1, "sa\n", 1); and so on
 /*
-ARG="4 67 3 87 23"; ./push_swap $ARG
+ARG="-135 -819 -119 792 827"; ./push_swap $ARG
 ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_Mac $ARG
-
+ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
 */

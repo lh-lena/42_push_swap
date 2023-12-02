@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_small_stack.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 21:48:44 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:40:05 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:28:43 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,43 +20,30 @@ void	sort_small_stack(t_list **a, t_list **b)
 	if (size == 2)
 	{
 		sa(a);
-		write(1, "sa\n", 3);
 	}
 	else if (size == 3)
 	{
-		sort_3_stack(a);
+		sort_three_stack(a);
 	}
-	else if (size <= 5)
+	else if (size == 5 || size == 4)
 	{
-		sort_5_stack(a, b);
+		sort_five_stack(a, b);
 	}
 }
 
-void	sort_3_stack(t_list **stack_a)
+void	sort_three_stack(t_list **stack_a)
 {
-	long	first;
-	long	second;
-	long	third;
+	t_details	data;
 
 	if (is_sorted(stack_a))
 		return ;
-	first = (*stack_a)->val;
-	second = ((*stack_a)->next)->val;
-	third = ((*stack_a)->prev)->val;
-	if ((first > second && first < third) || (first > second && second > third && first > third) || (second > third && second > first && first < third))
-	{
-		sa(stack_a);
-		first = (*stack_a)->val;
-		second = (*stack_a)->next->val;
-	}
-	if (first > second && second < third)
-	{
+	data.max = get_max(*stack_a);
+	if (data.max->val == (*stack_a)->val)
 		ra(stack_a);
-	}
-	if (first < second && third < first)
-	{
+	else if (data.max->val == (*stack_a)->next->val)
 		rra(stack_a);
-	}
+	if ((*stack_a)->val > (*stack_a)->next->val)
+		sa(stack_a);
 }
 
 static bool	equal(int a, int b)
@@ -66,7 +53,7 @@ static bool	equal(int a, int b)
 	return (0);
 }
 
-void	sort_5_stack(t_list **a, t_list **b)
+void	sort_five_stack(t_list **a, t_list **b)
 {
 	t_details	data;
 	size_t		size;
@@ -74,8 +61,9 @@ void	sort_5_stack(t_list **a, t_list **b)
 	size = ft_lstsize(*a);
 	while (size-- > 3)
 	{
-		data.min = get_min(a);
-		while(!equal((*a)->val, data.min->val))
+		set_cur_pos(a);
+		data.min = get_min(*a);
+		while (!equal((*a)->val, data.min->val))
 		{
 			if (data.min->above_median)
 				ra(a);
@@ -84,9 +72,7 @@ void	sort_5_stack(t_list **a, t_list **b)
 		}
 		pb(a, b);
 	}
-	sort_3_stack(a);
+	sort_three_stack(a);
 	pa(a, b);
 	pa(a, b);
 }
-
-

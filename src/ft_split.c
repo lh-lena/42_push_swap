@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:10 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 14:15:17 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:19:04 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,77 +31,69 @@ void	free_arr(char **ptr)
 	ptr = NULL;
 }
 
-int	ft_countw(char *str, char c)
+static unsigned int	ft_words(char const *s, char c)
 {
 	unsigned int	nb;
-	size_t	i;
-	char	*s;
 
-	s = str;
 	nb = 0;
-	i = 0;
-	while (s[i])
+	while (*s)
 	{
-		if (s[i] != c)
+		if (*s != c)
 			nb++;
-		while (s[i] && s[i] != c)
-			i++;
-		while (s[i] && s[i] == c)
-			i++;
+		while (*s && *s != c)
+			s++;
+		while (*s && *s == c)
+			s++;
 	}
 	return (nb);
 }
 
-char	*ft_allocwrd(char const *str, char c)
+static char	*ft_wordalloc(char const *s, char c)
 {
-	char	*wrd;
+	char	*str;
 	size_t	i;
 	size_t	len;
 
 	i = 0;
-	while ((char)str[i] && (char)str[i] != c)
+	while ((char)s[i] && (char)s[i] != c)
 		i++;
 	len = i;
-	wrd = (char *)malloc(sizeof(char) * (len + 1));
-	if (wrd == NULL)
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		wrd[i] = (char)str[i];
+		str[i] = (char)s[i];
 		i++;
 	}
-	wrd[i] = '\0';
-	return (wrd);
+	str[i] = '\0';
+	return (str);
 }
 
-char	**ft_split(char *str, char c)
+char	**ft_split(char const *s, char c)
 {
-	int	i;
-	int	wrds;
-	char	**arr;
+	char			**arr;
+	unsigned int	num_words;
+	size_t			i;
 
-	if (str == NULL)
+	num_words = ft_words(s, c);
+	arr = (char **)malloc(sizeof(char *) * (num_words + 1));
+	if (!arr)
 		return (NULL);
-	wrds = ft_countw(str, c);
-	if (!wrds)
-		exit (1);
 	i = 0;
-	arr = (char **)malloc(sizeof(char *) * (wrds + 1));
-	if (arr == NULL)
-		return (NULL);
-	while (i < wrds)
+	while (i < num_words)
 	{
-		while (*str && *str == c)
-			str++;
-		if (*str && *str != c)
+		while (*s == c && *s)
+			s++;
+		if (*s != c && *s)
 		{
-			arr[i] = ft_allocwrd(str, c);
+			arr[i] = ft_wordalloc(s, c);
 			if (!arr[i])
 				return (arr);
 		}
-		while (*str && *str != c)
-			str++;
+		while (*s != c && *s)
+			s++;
 		i++;
 	}
 	arr[i] = NULL;

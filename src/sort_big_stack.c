@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_big_stack.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:21:11 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:44:55 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:41:34 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,16 @@ void	sort_big_stack(t_list **a, t_list **b)
 
 void	sort_big_stack(t_list **a, t_list **b)
 {
+	t_details	data;
 
 	if (is_rev_sorted(a))
 		rev_sort(a, b);
-	
+	set_cur_pos(a);
+	pb(a, b);
+	pb(a, b);
+	data.max = get_max(*a);
+	data.min = get_min(*a);
+	// printf("POS MAX = %d \n", data.max->pos);
+	// printf("POS MIN = %d \n", data.min->pos);
+	// printf("List size = %zu\n", ft_lstsize(*a));
 }

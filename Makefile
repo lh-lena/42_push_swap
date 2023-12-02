@@ -10,16 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
+
+SRS_DIR 		= ./src
+
 NAME			=	push_swap
-
-SRS_DIR 		=	./src
 SRC				=	$(SRS_DIR)/*.c
-OBJ				=	$(S_SRC:.c=.o)
+OBJ				=	$(SRC:.c=.o)
 
-# Compiler
 CC				=	cc
 RM				=	rm -f
-CFLAGS			=	-Wall -Werror -Wextra -g3 -fsanitize=address 
+CFLAGS			=	-Wall -Werror -Wextra #-g3 -fsanitize=address
 
 all:		$(NAME)
 

@@ -3,40 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:38:41 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:31:35 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:43:20 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	free_stack(t_list *stack, void	*last)
-{
-	if ((void*)stack == NULL || !stack)
-	{
-		printf("Stack empty\n");
-		return ;
-	}
-	if (stack)
-	{
-		if (stack != last)
-			free_stack(stack->next, last);
-		free(stack);
-	}
-}
-
 t_list	*ft_lstlast(t_list *head)
 {
-	// printf("head->prev = %i\n", head->prev);
 	return (head->prev);
 }
 
 size_t	ft_lstsize(t_list *lst)
 {
 	void	*last_node;
-	size_t		i;
+	size_t	i;
 
 	if (!lst)
 		return (0);
@@ -50,34 +34,15 @@ size_t	ft_lstsize(t_list *lst)
 	return (i);
 }
 
-void	print_lst(t_list *lst)
+t_list	*get_max(t_list *stack)
 {
-	t_list	*temp;
-	size_t	size;
-	size_t		i;
-	
-	i = 0;
-	temp = lst;
-	size = ft_lstsize(lst);
-	while (i < size)
-	{
-		printf(" node = %d |\n", temp->val);
-		temp = temp->next;
-		i++;
-	}
-	if (lst == NULL)
-		printf("lst = NULL\n");
-}
-
-t_list *get_max(t_list **stack)
-{
-	t_list *max;
-	int		size;
+	t_list	*max;
 	t_list	*cur;
+	int		size;
 	long	temp;
 
-	size = ft_lstsize(*stack);
-	cur = (*stack);
+	size = ft_lstsize(stack);
+	cur = stack;
 	max = cur;
 	while (size)
 	{
@@ -90,15 +55,15 @@ t_list *get_max(t_list **stack)
 	return (max);
 }
 
-t_list *get_min(t_list **stack)
+t_list	*get_min(t_list *stack)
 {
-	t_list *min;
-	int		size;
+	t_list	*min;
 	t_list	*cur;
+	int		size;
 	long	temp;
 
-	size = ft_lstsize(*stack);
-	cur = (*stack);
+	size = ft_lstsize(stack);
+	cur = stack;
 	min = cur;
 	while (size)
 	{
@@ -108,18 +73,17 @@ t_list *get_min(t_list **stack)
 			min = cur->prev;
 		size--;
 	}
-	// printf("MIN = %d\n", min->val);
 	return (min);
 }
 
-void	set_idx(t_list **stack)
+void	set_cur_pos(t_list **stack)
 {
 	int		i;
 	int		median;
 	size_t	size;
 	t_list	*cur;
 
-	if (!stack)	
+	if (!stack)
 		return ;
 	cur = *stack;
 	i = 0;
@@ -127,13 +91,12 @@ void	set_idx(t_list **stack)
 	median = size / 2;
 	while (size)
 	{
-		cur->idx = i;
+		cur->pos = i;
 		if (i <= median)
 			cur->above_median = true;
 		else
 			cur->above_median = false;
 		cur = cur->next;
-		// ++i;
 		i++;
 		size--;
 	}

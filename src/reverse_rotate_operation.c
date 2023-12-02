@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   reverse_rotate_operation.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:30:07 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:29:04 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 11:48:49 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// Shift down all elements of stack a by 1.
-// The last element becomes the first one.
+/* Shift down all elements of stack a by 1.
+The last element becomes the first one. */
 void	rra(t_list **stack_a)
 {
 	if (*stack_a && ft_lstsize(*stack_a) > 1)

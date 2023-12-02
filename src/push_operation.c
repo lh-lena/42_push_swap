@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   push_operation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:14:23 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/25 19:32:01 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/26 11:48:41 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// Take the first element at the top of b and put it at the top of a.
-// Do nothing if b is empty.
+/* Take the first element at the top of b and put it at the top of a.
+Do nothing if b is empty.*/
 void	pa(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*push;
-	
+
 	push = *stack_b;
 	if (*stack_b)
 	{
@@ -27,8 +27,8 @@ void	pa(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-// Take the first element at the top of a and put it at the top of b.
-// Do nothing if a is empty.
+/* Take the first element at the top of a and put it at the top of b.
+Do nothing if a is empty.*/
 void	pb(t_list **stack_a, t_list **stack_b)
 {
 	t_list	*push;

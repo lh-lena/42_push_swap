@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_operation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ohladkov <ohladkov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:29:11 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 10:29:22 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:19:34 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
