@@ -19,7 +19,7 @@ The goal is to minimize the number of moves required to sort the stack.
 ```C
     make
 ```
-4. Run the Minishell: 
+4. Run the program: 
 ```C
     ./push_swap [unsorted list of integers]
 ```
