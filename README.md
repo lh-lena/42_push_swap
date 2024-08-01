@@ -9,11 +9,11 @@ The goal is to minimize the number of moves required to sort the stack.
 ### Installing and running the project:
 1. Clone the repository:
 ```C
-    git clone git@github.com:lh-lena/42_push_swap.git push_swap
+    git clone git@github.com:lh-lena/42_push_swap.git
 ```
 2. Navigate to the project directory:
 ```C
-    cd push_swap
+    cd 42_push_swap
 ```
 3. Compile the project: 
 ```C
