@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:23:10 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 17:41:44 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:21:21 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ static void	swap_nodes(t_list **stack)
 	cur->next->val = temp;
 	cur->next->idx = idx_t;
 }
-
-/*static void	swap_nodes(t_list **stack)
-{
-	t_list	*cur;
-	t_list	*temp;
-
-	cur = (*stack);
-	temp = cur;
-	cur = cur->next;
-	cur->next = temp;
-
-	(*stack) = cur;
-}*/
 
 /* Swap the first 2 elements at the top of stack a. 
 Do nothing if there is only one or no elements. */

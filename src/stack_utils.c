@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 13:38:41 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 17:43:20 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:21:21 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_list	*get_min(t_list *stack)
 	return (min);
 }
 
-void	set_cur_pos(t_list **stack)
+void	set_cur_pos(t_list *stack)
 {
 	int		i;
 	int		median;
@@ -85,17 +85,17 @@ void	set_cur_pos(t_list **stack)
 
 	if (!stack)
 		return ;
-	cur = *stack;
+	cur = stack;
 	i = 0;
-	size = ft_lstsize(*stack);
+	size = ft_lstsize(stack);
 	median = size / 2;
 	while (size)
 	{
 		cur->pos = i;
 		if (i <= median)
-			cur->above_median = true;
+			cur->above_median = 1;
 		else
-			cur->above_median = false;
+			cur->above_median = 0;
 		cur = cur->next;
 		i++;
 		size--;

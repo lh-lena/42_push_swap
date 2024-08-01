@@ -6,11 +6,27 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:26 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 18:17:35 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/12/14 14:41:38 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+void	display_error(void)
+{
+	write (2, "Error\n", 6);
+	exit(1);
+}
+
+void	free_stack(t_list *stack, void	*last)
+{
+	if (stack)
+	{
+		if (stack != last)
+			free_stack(stack->next, last);
+		free(stack);
+	}
+}
 
 t_list	*parse_argv(char **argv)
 {
@@ -82,18 +98,11 @@ int	main(int argc, char **argv)
 			free_stack(stack_a, stack_a->prev);
 		display_error();
 	}
-	if (!is_sorted(&stack_a))
+	if (!is_sorted(stack_a))
 		sort_stack(&stack_a, &stack_b);
-	// print_lst(stack_a);
 	if (stack_a)
 		free_stack(stack_a, stack_a->prev);
 	if (stack_b)
 		free_stack(stack_b, stack_b->prev);
 	return (0);
 }
-/*
-ARG="-135 -819 -119 792 827"; ./push_swap $ARG
-ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_Mac $ARG
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker_linux $ARG
-*/

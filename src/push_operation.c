@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 08:14:23 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/26 11:48:41 by ohladkov         ###   ########.fr       */
+/*   Updated: 2024/01/31 13:59:59 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	pb(t_list **stack_a, t_list **stack_b)
 		delete_first_node(stack_a);
 		ft_add_front(stack_b, push);
 		write(1, "pb\n", 3);
+		
 	}
 }

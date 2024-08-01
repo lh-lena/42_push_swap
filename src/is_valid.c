@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:40:03 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 18:08:54 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:21:21 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_isdigit(char c)
 	return (0);
 }
 
-bool	check_edge(const char *s, int sign)
+int	check_edge(const char *s, int sign)
 {
 	long long	num;
 
@@ -27,21 +27,20 @@ bool	check_edge(const char *s, int sign)
 	if (*s == '-' || *s == '+')
 	{
 		if (*(s + 1) == '\0')
-			return (false);
+			return (0);
 		s++;
 	}
-	
 	while (*s)
 	{
 		num = num * 10 + (*s - 48);
 		s++;
 	}
 	if (num * sign < INT_MIN || num * sign > INT_MAX)
-		return (false);
-	return (true);
+		return (0);
+	return (1);
 }
 
-bool	is_valid(const char *s)
+int	is_valid(const char *s)
 {
 	int		sign;
 	int		i;
@@ -55,22 +54,22 @@ bool	is_valid(const char *s)
 		i++;
 	}
 	if (ft_strlen(s) >= 12)
-		return (false);
+		return (0);
 	if (ft_strlen(s) >= 10)
 	{
-		if (check_edge(s, sign) == false)
-			return (false);
+		if (check_edge(s, sign) == 0)
+			return (0);
 	}
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
-			return (false);
+			return (0);
 		i++;
 	}
-	return (true);
+	return (1);
 }
 
-bool	check_duplicate(t_list *stack_a)
+int	check_duplicate(t_list *stack_a)
 {
 	t_list	*temp;
 	t_list	*cur;
@@ -82,10 +81,10 @@ bool	check_duplicate(t_list *stack_a)
 		while (temp != stack_a->prev->next)
 		{
 			if (cur->val == temp->val)
-				return (true);
+				return (1);
 			temp = temp->next;
 		}
 		cur = cur->next;
 	}
-	return (false);
+	return (0);
 }

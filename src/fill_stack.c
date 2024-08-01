@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fill_in_stack.c                                    :+:      :+:    :+:   */
+/*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:39:39 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 17:47:05 by ohladkov         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:30:26 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_add_front(t_list **head, t_list *new_node)
 	(*head) = new_node;
 }
 
-/*removing the first node*/
+/* removing the first node */
 void	delete_first_node(t_list **head)
 {
 	if ((*head)->next == *head && (*head)->prev == *head)

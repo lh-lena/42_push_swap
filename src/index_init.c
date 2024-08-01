@@ -6,7 +6,7 @@
 /*   By: ohladkov <ohladkov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 17:43:57 by ohladkov          #+#    #+#             */
-/*   Updated: 2023/11/30 18:15:53 by ohladkov         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:21:21 by ohladkov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ t_list	*get_next_min(t_list *stack, int min)
 
 	size = ft_lstsize(stack);
 	cur = stack;
+	while (cur->val <= min)
+		cur = cur->next;
 	next_min = cur;
-	// printf("min = %d\n", min);
 	while (size - 1)
 	{
 		if (cur->val <= min)
 			cur = cur->next;
-		if (cur->prev->val > min && cur->prev->val < cur->val)
-			next_min = cur->prev;
 		if (cur->val > min && cur->val < next_min->val)
 			next_min = cur;
-		// printf("next_min = %d\n", next_min->val);
 		cur = cur->next;
 		size--;
 	}
@@ -40,9 +38,9 @@ t_list	*get_next_min(t_list *stack, int min)
 void	fill_indexes(t_list *stack)
 {
 	t_list	*cur;
-	size_t	size;
+	int		size;
 	int		min;
-	size_t	i;
+	int		i;
 
 	size = ft_lstsize(stack);
 	cur = get_min(stack);
